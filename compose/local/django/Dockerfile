@@ -13,12 +13,17 @@ ENV UV_COMPILE_BYTECODE=1 UV_LINK_MODE=copy UV_PYTHON_DOWNLOADS=0
 
 # Install apt packages
 RUN apt-get update && apt-get install --no-install-recommends -y \
-  # dependencies for building Python packages
+# dependencies for building Python packages
   build-essential \
-  # psycopg dependencies
+# psycopg dependencies
   libpq-dev \
   gettext \
-  wait-for-it
+  wait-for-it \
+# GeoDjango dependencies
+  gdal-bin \
+  libgdal-dev \
+  libgeos-dev \
+  libproj-dev
 
 # Requirements are installed here to ensure they will be cached.
 RUN --mount=type=cache,target=/root/.cache/uv \
